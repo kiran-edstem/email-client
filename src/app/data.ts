@@ -93,8 +93,8 @@ export const emailData: EmailData = {
             id: "email1",
             subject: "Project Update - Q1 Goals",
             from: {
-                email: "sarah@example.com",
-                name: "Sarah Johnson 1"
+                email: "kiran@example.com",
+                name: "Kiran PV"
             },
             to: [{
                 email: "user@example.com",

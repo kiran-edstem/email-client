@@ -37,6 +37,7 @@ export default function FolderNavigation({ folders, labels }: FolderNavigationPr
                         <div key={item.id}
                             className="py-2 px-3 flex justify-between "
                         >
+
                             <span className="flex justify-between items-center gap-2">
                                 {
                                     getIcon(item.name)
