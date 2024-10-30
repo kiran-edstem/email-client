@@ -50,11 +50,12 @@ export default function EmailPreviewPane({ email, expanded = false }: EmailPrevi
                     }
                 </div>
             </div>
+            <h3 className='text-sm my-1'>Attachments</h3>
             <div className='flex flex-wrap justify-start'>
                 {
                     email.attachments.map((item) => {
                         return (
-                            <div key={item.id} className='flex justify-start items-center gap-2 border border-blue-400 rounded px-3 py-2'>
+                            <div key={item.id} className='flex justify-start items-center gap-2 border border-blue-400 rounded px-2 py-1'>
                                 <MdAttachment />
                                 <span >
                                     {item.name}
