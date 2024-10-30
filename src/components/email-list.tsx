@@ -58,7 +58,7 @@ export default function EmailList({ emails, handleEmailSelect }: EmailListProps)
             <h2 className="text-gray-400 text-lg pt-1">{emails.length} messages</h2>
         </div>
         <VirtualScroll
-            rowHeight={70}
+            rowHeight={75}
             totalItems={emailList.length}
             containerHeight="500px"
             items={emailList}

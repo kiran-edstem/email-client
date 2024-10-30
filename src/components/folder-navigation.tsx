@@ -4,6 +4,7 @@ import { MdWork } from "react-icons/md";
 import { HiMiniInboxArrowDown } from "react-icons/hi2";
 import { MdOutlineOutbox } from "react-icons/md";
 import { MdOutlineDrafts } from "react-icons/md";
+import Link from "next/link";
 interface FolderNavigationProps {
     folders: Folders[],
     labels: Labels[]
@@ -73,5 +74,10 @@ export default function FolderNavigation({ folders, labels }: FolderNavigationPr
                 })
             }
         </div>
+        <button className='border border-blue-500 bg-blue-200 px-4 py-1 rounded w-full mt-3 text-gray-600'>
+            <Link href={`/email/compose`}>
+                Compose Email
+            </Link>
+        </button>
     </div>
 }
