@@ -1,3 +1,4 @@
+'use client'
 
 import { Email } from '@/app/data';
 import { MdAttachment } from "react-icons/md";
@@ -6,14 +7,30 @@ import Link from 'next/link';
 import { FaReply } from "react-icons/fa6";
 import { RiShareForward2Fill } from "react-icons/ri";
 import { FaArchive } from "react-icons/fa";
+import { useDrop } from 'react-dnd';
 interface EmailPreviewPaneProps {
     email: Email,
     expanded?: boolean
+    onEmailDrop?: (droppedEmail: Email) => void
 }
 
-export default function EmailPreviewPane({ email, expanded = false }: EmailPreviewPaneProps) {
+export default function EmailPreviewPane({ email, expanded = false, onEmailDrop }: EmailPreviewPaneProps) {
+    const [{ isOver, canDrop }, drop] = onEmailDrop ? useDrop({
+        accept: 'EMAIL',
+        drop: (item: Email) => onEmailDrop(item),
+        collect: (monitor) => ({
+            isOver: monitor.isOver(),
+            canDrop: monitor.canDrop(),
+        }),
+    }) : [{ isOver: false, canDrop: false }, null];
+
+
+
     return (
-        <div className="bg-slate-100 col-span-2 p-3 rounded relative h-[95vh]">
+        <div
+            className="bg-slate-100 col-span-2 p-3 rounded relative h-[95vh]"
+            ref={onEmailDrop ? (drop as unknown as React.Ref<HTMLDivElement>) : undefined}
+        >
             {
                 !expanded ? <button className='border border-blue-500 bg-blue-200 px-4 py-1 rounded absolute top-5 right-4'>
                     <Link href={`/email/${email.id}`}>

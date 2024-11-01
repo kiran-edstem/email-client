@@ -108,7 +108,7 @@ export const emailData: EmailData = {
             attachments: [
                 {
                     id: "att1",
-                    name: "Q4-Goals.pdf",
+                    name: "Q1-Goals.pdf",
                     size: 2048576,
                     type: "application/pdf"
                 }

@@ -5,6 +5,7 @@ import { MdFolder } from "react-icons/md";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { MdOutlineMarkEmailRead } from "react-icons/md";
 import VirtualScroll from "./virtual-scroll";
+import { useDrag } from 'react-dnd';
 interface EmailListProps {
     emails: Email[]
     handleEmailSelect: (index: number) => void
@@ -12,8 +13,16 @@ interface EmailListProps {
 export default function EmailList({ emails, handleEmailSelect }: EmailListProps) {
 
     const emailList = emails.map((item: Email, index: number) => {
+        const [{ isDragging }, drag] = useDrag({
+            type: 'EMAIL',
+            item: { ...item },
+            collect: (monitor) => ({
+                isDragging: monitor.isDragging(),
+            }),
+        });
         return (
-            <div className={`border border-gray-500 rounded my-2 cursor-pointer relative ${item.isRead ? "bg-white" : "bg-blue-50"}`}
+            <div className={`border border-gray-500 rounded my-2 cursor-pointer relative ${item.isRead ? "bg-white" : "bg-blue-50"}  ${isDragging ? 'opacity-50' : 'opacity-100'}`}
+                ref={drag as unknown as React.Ref<HTMLDivElement>}
                 key={item.id}
                 onClick={() => handleEmailSelect(index)}
             >
